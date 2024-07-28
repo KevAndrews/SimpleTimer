@@ -1,0 +1,53 @@
+# Specific to the EFCore-Blazor sample app
+*.db
+*.db-shm
+*.db-wal
+_build/
+_site/
+
+# User-specific files
+*.suo
+*.user
+!*.slnLaunch.user
+*.userosscache
+*.sln.docstates
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+*.userprefs
+
+# Build results
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+
+# Visual Studio cache/options directory
+.vs/
+
+# MSTest test results
+[TestRr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet packages
+*.nupkg
+
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+
+# Windows Azure Build Output
+csx/
+*.build.csdef
+
+# Others
+node_modules/
+bower_components/
+blazor-samples/

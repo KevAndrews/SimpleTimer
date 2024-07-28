@@ -1,0 +1,41 @@
+﻿
+<MudText Typo="Typo.body1" Class="mb-4">Time Counter: @_timer</MudText>
+
+<MudToggleIconButton Toggled="@_isRunning" ToggledChanged="OnToggledChanged"
+                     Icon="@Icons.Material.Filled.Start" Color="@Color.Primary"
+                     ToggledIcon="@Icons.Material.Filled.Stop" Variant="Variant.Filled" />
+
+<MudIconButton Icon="@Icons.Material.Filled.RestartAlt" Color="Color.Primary" Variant="Variant.Filled" OnClick="Restart" />
+
+@code {
+
+  private bool _isRunning = false;
+
+  private string _timer = "00:00:00";
+
+  private TimeSpan _timeSpan;
+
+  protected async Task OnToggledChanged(bool toggled)
+  {
+    _isRunning = toggled;
+
+    using (var timer = new PeriodicTimer(TimeSpan.FromSeconds(1)))
+
+      while (_isRunning && await timer.WaitForNextTickAsync())
+      {
+        _timeSpan += timer.Period;
+
+        _timer = _timeSpan.ToString();
+
+        await InvokeAsync(StateHasChanged);
+      }
+  }
+
+  protected void Restart()
+  {
+    _timeSpan = new();
+
+    _timer = "00:00:00";
+  }
+
+}
