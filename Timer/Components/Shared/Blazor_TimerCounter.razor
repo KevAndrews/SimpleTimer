@@ -1,0 +1,58 @@
+﻿@rendermode InteractiveServer
+
+<h3 class="mb-4">Time Counter: @_timer</h3>
+
+<button class="mud-button" @onclick="OnToggledChanged">
+  @_buttonText
+</button>
+
+<button class="mud-button" @onclick="Restart">
+  Restart
+</button>
+
+<button class="mud-button" @onclick="@(() => OnSave.InvokeAsync(_timeSpan))">
+  Save
+</button>
+
+@code {
+
+  [Parameter] 
+  public EventCallback<TimeSpan> OnSave { get; set; }
+
+  private bool _isRunning = false;
+
+  private string _buttonText = "Start";
+
+  private string _timer = "00:00:00";
+
+  private TimeSpan _timeSpan;
+
+  private async Task OnToggledChanged()
+  {
+    _isRunning = !_isRunning;
+
+    if (_isRunning)
+      _buttonText = "Stop";
+    else
+      _buttonText = "Start";
+
+    using (var timer = new PeriodicTimer(TimeSpan.FromSeconds(1)))
+
+      while (_isRunning && await timer.WaitForNextTickAsync())
+      {
+        _timeSpan += timer.Period;
+
+        _timer = _timeSpan.ToString();
+
+        await InvokeAsync(StateHasChanged);
+      }
+  }
+
+  protected void Restart()
+  {
+    _timeSpan = new();
+
+    _timer = "00:00:00";
+  }
+
+}

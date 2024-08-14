@@ -2,6 +2,20 @@
 
 <PageTitle>Home</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Simple Timer</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">Simple Timer Using Mudblazor</MudText>
+<MudBlazor_TimerCounter OnSave="ClickHandler" />
 
-<TimerCounter />
+<MudText Typo="Typo.h3" GutterBottom="true" Class="mt-4">Simple Timer Using Standard Blazor</MudText>
+<Blazor_TimerCounter OnSave="ClickHandler" />
+
+<MudText Typo="Typo.h3" GutterBottom="true" Class="mt-4">@_message</MudText>
+
+@code
+{
+  private string _message { get; set; } = string.Empty;
+
+  void ClickHandler(TimeSpan timeToSave)
+  {
+    _message = timeToSave.ToString();
+  }
+}

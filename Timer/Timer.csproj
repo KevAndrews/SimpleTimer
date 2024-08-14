@@ -10,4 +10,11 @@
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="7.*" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Components\Shared\Blazor_TimerCounter.razor">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
