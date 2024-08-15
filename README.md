@@ -2,7 +2,7 @@
 The scope of this project was to create a component for tracking time using standard Blazor and MudBlazor.
 <br/><br/>
 
-![Preview](images/display.png)
+![Preview](Timer/images/display.png)
 
 # Component's
 1. Blazor_TimeCounter
